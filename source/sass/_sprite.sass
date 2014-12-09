@@ -1,0 +1,68 @@
+$arrow: 0px 30px 0px -30px 30px 7px 135px 1155px '../img/icons.png'
+$arrow2x: 0px 71px 0px -71px 60px 14px 135px 1155px '../img/icons.png'
+$buy: 0px 95px 0px -95px 17px 16px 135px 1155px '../img/icons.png'
+$buy2x: 0px 244px 0px -244px 33px 33px 135px 1155px '../img/icons.png'
+$code: 0px 47px 0px -47px 15px 14px 135px 1155px '../img/icons.png'
+$code2x: 0px 206px 0px -206px 30px 28px 135px 1155px '../img/icons.png'
+$codedby: 0px 0px 0px 0px 47px 5px 135px 1155px '../img/icons.png'
+$coderiver: 0px 15px 0px -15px 49px 5px 135px 1155px '../img/icons.png'
+$lang-h: 0px 148px 0px -148px 19px 19px 135px 1155px '../img/icons.png'
+$lang-h2x: 0px 331px 0px -331px 38px 38px 135px 1155px '../img/icons.png'
+$lang: 0px 177px 0px -177px 19px 19px 135px 1155px '../img/icons.png'
+$lang2x: 0px 379px 0px -379px 38px 38px 135px 1155px '../img/icons.png'
+$mark: 0px 427px 0px -427px 31px 50px 135px 1155px '../img/icons.png'
+$mark2x: 0px 687px 0px -687px 62px 100px 135px 1155px '../img/icons.png'
+$step-one: 0px 487px 0px -487px 68px 52px 135px 1155px '../img/icons.png'
+$step-one2x: 0px 797px 0px -797px 135px 102px 135px 1155px '../img/icons.png'
+$step-three: 0px 549px 0px -549px 67px 58px 135px 1155px '../img/icons.png'
+$step-three2x: 0px 909px 0px -909px 134px 116px 135px 1155px '../img/icons.png'
+$step-two: 0px 617px 0px -617px 58px 60px 135px 1155px '../img/icons.png'
+$step-two2x: 0px 1035px 0px -1035px 116px 120px 135px 1155px '../img/icons.png'
+$wallet: 0px 121px 0px -121px 18px 17px 135px 1155px '../img/icons.png'
+$wallet2x: 0px 287px 0px -287px 36px 34px 135px 1155px '../img/icons.png'
+
+
+@mixin sprite-width($sprite)
+  width: nth($sprite, 5)
+
+@mixin sprite-height($sprite)
+  height: nth($sprite, 6)
+
+@mixin sprite-position($sprite)
+  $sprite-offset-x: nth($sprite, 3)
+  $sprite-offset-y: nth($sprite, 4)
+  background-position: $sprite-offset-x $sprite-offset-y
+
+@mixin sprite-image($sprite)
+  $sprite-image: nth($sprite, 9)
+  background-image: url(#{$sprite-image})
+
+@mixin sprite($sprite)
+  @include sprite-image($sprite)
+  @include sprite-position($sprite)
+  @include sprite-width($sprite)
+  @include sprite-height($sprite)
+
+
+@mixin retina-sprite-width($sprite)
+  width: round(nth($sprite, 5) / 2)
+
+@mixin retina-sprite-height($sprite)
+  height: round(nth($sprite, 6) / 2)
+
+@mixin retina-sprite-position($sprite)
+  $sprite-offset-x: round(nth($sprite, 3) / 2)
+  $sprite-offset-y: round(nth($sprite, 4) / 2)
+  background-position: $sprite-offset-x $sprite-offset-y
+
+@mixin sprite-background-size($sprite)
+  $bg-width: round(nth($sprite, 7) / 2)
+  $bg-height: round(nth($sprite, 8) / 2)
+  background-size: $bg-width $bg-height
+
+@mixin retina-sprite($sprite)
+  @include sprite-image($sprite)
+  @include retina-sprite-position($sprite)
+  @include retina-sprite-width($sprite)
+  @include retina-sprite-height($sprite)
+  @include sprite-background-size($sprite)
