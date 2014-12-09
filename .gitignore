@@ -1,5 +1,4 @@
 .sass-cache/
 *.sublime-project
 *.sublime-workspace
-node-modules/
 node_modules
