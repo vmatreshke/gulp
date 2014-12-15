@@ -37,3 +37,7 @@ h1 { color: blue; text-transform: uppercase; font-size: 80px; text-align: center
 
 .icon-right { background-color: red; -webkit-transition: 2s linear; transition: 2s linear; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; background-image: url(../img/icons.png); background-position: 0px -399px; width: 68px; height: 51px; background-size: 68px 578px; -webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px); }
 .icon-right:hover { background-image: url(../img/icons.png); background-position: 0px -518px; width: 58px; height: 60px; background-size: 68px 578px; }
+
+@-webkit-keyframes anim { from-opacity: 0; to-opacity: 1; }
+
+@keyframes anim { from-opacity: 0; to-opacity: 1; }

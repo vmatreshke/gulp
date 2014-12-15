@@ -1,7 +1,6 @@
 var gulp         = require('gulp'),
     browserSync  = require('browser-sync'),
     sass         = require('gulp-ruby-sass'),
-    libsass      = require('gulp-sass'),
     sourcemaps   = require('gulp-sourcemaps'),
     jade         = require('gulp-jade'),
     notify       = require('gulp-notify'),
@@ -13,7 +12,7 @@ var gulp         = require('gulp'),
     postcss      = require('gulp-postcss');
 
 
-//** paths **
+//** src paths **
 var src = {
     root : 'source',
     jade : 'source/jade',
@@ -22,38 +21,25 @@ var src = {
     img  : 'source/img'
 };
 
+//** dest paths **
 var dest = {
-    root : 'build',
-    html : 'build',
-    css  : 'build/css',
-    js   : 'build/js',
-    img  : 'build/img'
+    root    : 'build',
+    html    : 'build',
+    css     : 'build/css',
+    js      : 'build/js',
+    img     : 'build/img',
+    helpers : 'build/helpers'
 };
-
-var srcPath     = 'source',
-    destPath    = 'build',
-
-    htmlPath    = destPath,
-    cssPath     = destPath + '/css',
-    jsPath      = destPath + '/js',
-    imgPath     = destPath + '/img',
-
-    srcSassPath = srcPath + '/sass',
-    srcJsPath   = srcPath + '/js',
-    srcImgPath  = srcPath + '/img',
-    srcJadePath = srcPath + '/jade',
-
-    helpersPath = srcPath + '/helpers';
 
 
 // start webserver with livereload
 gulp.task('browser-sync', function() {
     browserSync({
         server: {
-            baseDir: destPath
+            baseDir: dest.root
             // index: 'index.html'
         },
-        files: [ cssPath + '/*.css', htmlPath + '/*.html', jsPath + '/*.js'],
+        files: [ dest.css + '/*.css', dest.html + '/*.html', dest.js + '/*.js'],
         port: 3000,
         open: false,
         ghostMode: false,
@@ -63,7 +49,7 @@ gulp.task('browser-sync', function() {
 
 // generate sprite
 gulp.task('sprite', function () {
-    var spriteData = gulp.src(srcImgPath + '/icons/*.png')
+    var spriteData = gulp.src(src.img + '/icons/*.png')
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(spritesmith({
         imgName: 'icons.png',
@@ -71,26 +57,12 @@ gulp.task('sprite', function () {
         imgPath: '../img/icons.png',
         cssFormat: 'sass',
         padding: 10,
-        cssTemplate: helpersPath + '/sprite.template.mustache'
+        cssTemplate: src.helpers + '/sprite.template.mustache'
     }));
     spriteData.img
-        .pipe(gulp.dest(imgPath));
+        .pipe(gulp.dest(dest.img));
     spriteData.css
-        .pipe(gulp.dest(srcSassPath));
-});
-
-// compile sass with libsass
-gulp.task('libsass', function() {
-    return gulp.src(src.sass + '/**/*.sass')
-        .pipe(plumber({errorHandler: notify.onError(function(error){return error.message;})}))
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(libsass({
-            outputStyle: 'compressed',
-            sourceComments: false
-        }))
-        .pipe(sourcemaps.write('./'))
-        .pipe(postcss([autoprefixer()]))
-        .pipe(gulp.dest(dest.css));
+        .pipe(gulp.dest(src.sass));
 });
 
 // compile sass with ruby-sass
@@ -102,37 +74,37 @@ gulp.task('sass', function() {
             'sourcemap=none': true
         }))
         .pipe(postcss([
-            autoprefixer({ browsers: ['last 5 version'], cascade: true })
+            autoprefixer({ browsers: ['> 0.5%'], cascade: false, map: true})
         ]))
         .pipe(gulp.dest(dest.css));
 });
 
 // compile jade
 gulp.task('jade', function() {
-    return gulp.src(srcJadePath + '/**/*.jade')
+    return gulp.src(src.jade + '/**/*.jade')
         .pipe(plumber({errorHandler: notify.onError(function(error){return error.message;})}))
-        .pipe(changed(htmlPath, {extension: '.html'}))
+        .pipe(changed(dest.html, {extension: '.html'}))
         .pipe(jade({pretty: true}))
-        .pipe(gulp.dest(htmlPath));
+        .pipe(gulp.dest(dest.html));
 });
 
 // optimize images
 gulp.task('imagemin', function() {
-    gulp.src([srcImgPath, !srcImgPath + '/icons/**'])
+    gulp.src([src.img, !src.img + '/icons/**'])
         .pipe(imagemin())
-        .pipe(gulp.dest(imgPath));
+        .pipe(gulp.dest(dest.img));
 });
 
 // watch files and run tasks
 gulp.task('watch', function() {
-    // gulp.watch(srcSassPath + '/**/*.sass', ['compass']);
-    // gulp.watch(srcSassPath + '/**/*.sass', ['sass']);
-    gulp.watch(srcSassPath + '/**/*.sass', ['libsass']);
-    // gulp.watch(cssPath, ['prefix']);
-    // gulp.watch(srcJsPath + '//**/.js', ['tasks']);
-    // gulp.watch(srcimgPath, ['imagemin']);
-    gulp.watch(srcImgPath + '/icons/*', ['sprite']);
-    gulp.watch(srcJadePath + '/**/*.jade', ['jade']);
+    // gulp.watch(src.sass + '/**/*.sass', ['compass']);
+    gulp.watch(src.sass + '/**/*.sass', ['sass']);
+    // gulp.watch(src.sass + '/**/*.sass', ['libsass']);
+    // gulp.watch(dest.css, ['prefix']);
+    // gulp.watch(src.js + '//**/.js', ['tasks']);
+    // gulp.watch(src.img, ['imagemin']);
+    gulp.watch(src.img + '/icons/*', ['sprite']);
+    gulp.watch(src.jade + '/**/*.jade', ['jade']);
 });
 
 gulp.task('default',['browser-sync','watch'], function() {});

@@ -13,20 +13,18 @@
   "author": "coderiver",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer-core": "^4.0.2",
-    "browser-sync": "^1.7.2",
-    "gulp": "^3.8.10",
-    "gulp-autoprefixer": "^2.0.0",
-    "gulp-changed": "^1.1.0",
-    "gulp-group-css-media-queries": "^1.0.0",
-    "gulp-imagemin": "^2.0.0",
-    "gulp-jade": "^0.10.0",
-    "gulp-notify": "^2.1.0",
-    "gulp-plumber": "^0.6.6",
-    "gulp-postcss": "^3.0.0",
-    "gulp-ruby-sass": "^0.7.1",
-    "gulp-sass": "^1.2.4",
-    "gulp-sourcemaps": "^1.2.8",
-    "gulp.spritesmith": "^1.4.0"
+    "autoprefixer-core": "latest",
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-changed": "latest",
+    "gulp-group-css-media-queries": "latest",
+    "gulp-imagemin": "latest",
+    "gulp-jade": "latest",
+    "gulp-notify": "latest",
+    "gulp-plumber": "latest",
+    "gulp-postcss": "latest",
+    "gulp-ruby-sass": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp.spritesmith": "latest"
   }
 }
