@@ -1,0 +1,37 @@
+$icons: (
+  arrow: (X: 0px, Y:-30px, W: 30px, H: 7px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  arrow2x: (X: 0px, Y:-71px, W: 60px, H: 14px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  buy: (X: 0px, Y:-95px, W: 17px, H: 16px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  buy2x: (X: 0px, Y:-244px, W: 33px, H: 33px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  code: (X: 0px, Y:-47px, W: 15px, H: 14px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  code2x: (X: 0px, Y:-206px, W: 30px, H: 28px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  codedby: (X: 0px, Y:0px, W: 47px, H: 5px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  coderiver: (X: 0px, Y:-15px, W: 49px, H: 5px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  lang-h: (X: 0px, Y:-148px, W: 19px, H: 19px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  lang-h2x: (X: 0px, Y:-331px, W: 38px, H: 38px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  lang: (X: 0px, Y:-177px, W: 19px, H: 19px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  lang2x: (X: 0px, Y:-379px, W: 38px, H: 38px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  mark: (X: 0px, Y:-427px, W: 31px, H: 50px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  mark2x: (X: 0px, Y:-687px, W: 62px, H: 100px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  step-one: (X: 0px, Y:-487px, W: 68px, H: 52px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  step-one2x: (X: 0px, Y:-797px, W: 135px, H: 102px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  step-three: (X: 0px, Y:-549px, W: 67px, H: 58px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  step-three2x: (X: 0px, Y:-909px, W: 134px, H: 116px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  step-two: (X: 0px, Y:-617px, W: 58px, H: 60px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  step-two2x: (X: 0px, Y:-1035px, W: 116px, H: 120px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  wallet: (X: 0px, Y:-121px, W: 18px, H: 17px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+  wallet2x: (X: 0px, Y:-287px, W: 36px, H: 34px, TW: 135px, TH: 1155px, IMG: '../img/icons.png'),
+);
+
+// Gets an attribute from the sass map
+@function icon-attr($icon, $attr) {
+  $icon: map-get($icons, $icon);
+  @return map-get($icon, $attr);
+}
+
+@mixin sprite($iconName) {
+  background-image: url(icon-attr($iconName, IMG));
+  width: icon-attr($iconName, W);
+  height: icon-attr($iconName, H);
+  background-position: icon-attr($iconName, X) icon-attr($iconName, Y);
+}

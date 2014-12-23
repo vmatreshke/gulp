@@ -3,54 +3,23 @@
   'functions': true
 }
 
+$icons: (
 {{#items}}
-${{name}}: {{px.x}} {{px.y}} {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}} {{px.total_width}} {{px.total_height}} '{{{escaped_image}}}'
+  {{name}}: (X: {{px.offset_x}}, Y:{{px.offset_y}}, W: {{px.width}}, H: {{px.height}}, TW: {{px.total_width}}, TH: {{px.total_height}}, IMG: '{{{escaped_image}}}'),
 {{/items}}
-
+);
 
 {{#options.functions}}
-@mixin sprite-width($sprite)
-  width: nth($sprite, 5)
+// Gets an attribute from the sass map
+@function icon-attr($icon, $attr) {
+  $icon: map-get($icons, $icon);
+  @return map-get($icon, $attr);
+}
 
-@mixin sprite-height($sprite)
-  height: nth($sprite, 6)
-
-@mixin sprite-position($sprite)
-  $sprite-offset-x: nth($sprite, 3)
-  $sprite-offset-y: nth($sprite, 4)
-  background-position: $sprite-offset-x $sprite-offset-y
-
-@mixin sprite-image($sprite)
-  $sprite-image: nth($sprite, 9)
-  background-image: url(#{$sprite-image})
-
-@mixin sprite($sprite)
-  @include sprite-image($sprite)
-  @include sprite-position($sprite)
-  @include sprite-width($sprite)
-  @include sprite-height($sprite)
-
-
-@mixin retina-sprite-width($sprite)
-  width: round(nth($sprite, 5) / 2)
-
-@mixin retina-sprite-height($sprite)
-  height: round(nth($sprite, 6) / 2)
-
-@mixin retina-sprite-position($sprite)
-  $sprite-offset-x: round(nth($sprite, 3) / 2)
-  $sprite-offset-y: round(nth($sprite, 4) / 2)
-  background-position: $sprite-offset-x $sprite-offset-y
-
-@mixin sprite-background-size($sprite)
-  $bg-width: round(nth($sprite, 7) / 2)
-  $bg-height: round(nth($sprite, 8) / 2)
-  background-size: $bg-width $bg-height
-
-@mixin retina-sprite($sprite)
-  @include sprite-image($sprite)
-  @include retina-sprite-position($sprite)
-  @include retina-sprite-width($sprite)
-  @include retina-sprite-height($sprite)
-  @include sprite-background-size($sprite)
+@mixin sprite($iconName) {
+  background-image: url(icon-attr($iconName, IMG));
+  width: icon-attr($iconName, W);
+  height: icon-attr($iconName, H);
+  background-position: icon-attr($iconName, X) icon-attr($iconName, Y);
+}
 {{/options.functions}}

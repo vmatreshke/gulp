@@ -31,12 +31,12 @@ body { max-width: 960px; margin: auto; }
 
 h1 { color: blue; text-transform: uppercase; font-size: 80px; text-align: center; }
 
-.icon { background-image: url(../img/icons.png); background-position: 0px -15px; width: 49px; height: 5px; -webkit-transition: all 0.2s linear; transition: all 0.2s linear; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+.icon { background-image: url("../img/icons.png"); width: 68px; height: 52px; background-position: 0px -487px; transition: all 0.2s linear; display: -webkit-flex; display: -ms-flexbox; display: flex; }
 
-.icon-left { height: 60px; background: red; -webkit-transition: 1s linear; transition: 1s linear; background: -webkit-linear-gradient(#FFF, #CCC, #f5f5f5); background: linear-gradient(#FFF, #CCC, #f5f5f5); display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+.icon-left { height: 60px; background: red; transition: 1s linear; background: linear-gradient(#FFF, #CCC, #f5f5f5); display: -webkit-flex; display: -ms-flexbox; display: flex; }
 
-.icon-right { background-color: red; -webkit-transition: 2s linear; transition: 2s linear; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; background-image: url(../img/icons.png); background-position: 0px -399px; width: 68px; height: 51px; background-size: 68px 578px; -webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px); }
-.icon-right:hover { background-image: url(../img/icons.png); background-position: 0px -518px; width: 58px; height: 60px; background-size: 68px 578px; }
+.icon-right { background-color: red; transition: 2s linear; display: -webkit-flex; display: -ms-flexbox; display: flex; background-image: url("../img/icons.png"); width: 58px; height: 60px; background-position: 0px -617px; }
+.icon-right:hover { -webkit-transform: translateX(20px); transform: translateX(20px); }
 
 @-webkit-keyframes anim { from-opacity: 0; to-opacity: 1; }
 

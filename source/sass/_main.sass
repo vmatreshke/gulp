@@ -12,7 +12,7 @@ h1
   text-align: center
 
 .icon
-  +sprite($coderiver)
+  +sprite(step-one)
   transition: all 0.2s linear
   display: flex
 
@@ -27,10 +27,9 @@ h1
   background-color: red
   transition: 2s linear
   display: flex
-  +retina-sprite($step-one2x)
+  +sprite(step-two)
   &:hover
-    +retina-sprite($step-two2x)
-  transform: translateX(20px)
+    transform: translateX(20px)
 
 @keyframes anim
   from:
